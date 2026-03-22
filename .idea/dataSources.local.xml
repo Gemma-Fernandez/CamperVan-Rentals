@@ -12,9 +12,9 @@
       <schema-mapping>
         <introspection-scope>
           <node kind="schema">
+            <name qname="campervan_rentals" />
             <name qname="@" />
             <name qname="proyectoaa" />
-            <name qname="campervan_rentals" />
           </node>
         </introspection-scope>
       </schema-mapping>
