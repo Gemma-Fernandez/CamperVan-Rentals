@@ -1467,7 +1467,7 @@ test\\_%|schema||PUBLIC|&apos;&apos;|UPDATE|G</Grants>
     <schema id="559" parent="1" name="proyectoaa">
       <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
       <LastIntrospectionLevel>3</LastIntrospectionLevel>
-      <LastIntrospectionLocalTimestamp>2026-03-22.11:30:23</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2026-03-22.16:55:53</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <schema id="560" parent="1" name="sys">
@@ -1511,241 +1511,498 @@ test\\_%|schema||PUBLIC|&apos;&apos;|UPDATE|G</Grants>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_general_ci</CollationName>
     </table>
-    <column id="571" parent="567" name="id_mantenimiento">
+    <table id="571" parent="559" name="mantenimientos">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="572" parent="559" name="reservas">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="573" parent="559" name="usuarios">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <table id="574" parent="559" name="vehiculos">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_general_ci</CollationName>
+    </table>
+    <column id="575" parent="567" name="id_mantenimiento">
       <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="572" parent="567" name="id_vehiculo">
+    <column id="576" parent="567" name="id_vehiculo">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="573" parent="567" name="descripcion_taller">
+    <column id="577" parent="567" name="descripcion_taller">
       <Position>3</Position>
       <StoredType>text|0s</StoredType>
     </column>
-    <column id="574" parent="567" name="coste_reparacion">
+    <column id="578" parent="567" name="coste_reparacion">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>decimal(10,2 digit)|0s</StoredType>
     </column>
-    <column id="575" parent="567" name="fecha_revision">
+    <column id="579" parent="567" name="fecha_revision">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>date|0s</StoredType>
     </column>
-    <column id="576" parent="567" name="itv_superada">
+    <column id="580" parent="567" name="itv_superada">
       <DefaultExpression>1</DefaultExpression>
       <Position>6</Position>
       <StoredType>tinyint(1)|0s</StoredType>
     </column>
-    <foreign-key id="577" parent="567" name="mantenimientos_ibfk_1">
+    <foreign-key id="581" parent="567" name="mantenimientos_ibfk_1">
       <ColNames>id_vehiculo</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>id_vehiculo</RefColNames>
       <RefTableName>vehiculos</RefTableName>
     </foreign-key>
-    <index id="578" parent="567" name="PRIMARY">
+    <index id="582" parent="567" name="PRIMARY">
       <ColNames>id_mantenimiento</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="579" parent="567" name="id_vehiculo">
+    <index id="583" parent="567" name="id_vehiculo">
       <ColNames>id_vehiculo</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="580" parent="567" name="PRIMARY">
+    <key id="584" parent="567" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="581" parent="568" name="id_reserva">
+    <column id="585" parent="568" name="id_reserva">
       <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="582" parent="568" name="id_usuario">
+    <column id="586" parent="568" name="id_usuario">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="583" parent="568" name="id_vehiculo">
+    <column id="587" parent="568" name="id_vehiculo">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="584" parent="568" name="observaciones_cliente">
+    <column id="588" parent="568" name="observaciones_cliente">
       <Position>4</Position>
       <StoredType>text|0s</StoredType>
     </column>
-    <column id="585" parent="568" name="dias_alquiler">
+    <column id="589" parent="568" name="dias_alquiler">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="586" parent="568" name="coste_total">
+    <column id="590" parent="568" name="coste_total">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>decimal(10,2 digit)|0s</StoredType>
     </column>
-    <column id="587" parent="568" name="fecha_inicio_viaje">
+    <column id="591" parent="568" name="fecha_inicio_viaje">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>date|0s</StoredType>
     </column>
-    <column id="588" parent="568" name="pagada_por_completo">
+    <column id="592" parent="568" name="pagada_por_completo">
       <DefaultExpression>0</DefaultExpression>
       <Position>8</Position>
       <StoredType>tinyint(1)|0s</StoredType>
     </column>
-    <foreign-key id="589" parent="568" name="reservas_ibfk_1">
+    <foreign-key id="593" parent="568" name="reservas_ibfk_1">
       <ColNames>id_usuario</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>id_usuario</RefColNames>
       <RefTableName>usuarios</RefTableName>
     </foreign-key>
-    <foreign-key id="590" parent="568" name="reservas_ibfk_2">
+    <foreign-key id="594" parent="568" name="reservas_ibfk_2">
       <ColNames>id_vehiculo</ColNames>
       <OnDelete>cascade</OnDelete>
       <RefColNames>id_vehiculo</RefColNames>
       <RefTableName>vehiculos</RefTableName>
     </foreign-key>
-    <index id="591" parent="568" name="PRIMARY">
+    <index id="595" parent="568" name="PRIMARY">
       <ColNames>id_reserva</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="592" parent="568" name="id_usuario">
+    <index id="596" parent="568" name="id_usuario">
       <ColNames>id_usuario</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="593" parent="568" name="id_vehiculo">
+    <index id="597" parent="568" name="id_vehiculo">
       <ColNames>id_vehiculo</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="594" parent="568" name="PRIMARY">
+    <key id="598" parent="568" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="595" parent="569" name="id_usuario">
+    <column id="599" parent="569" name="id_usuario">
       <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="596" parent="569" name="nombre">
+    <column id="600" parent="569" name="nombre">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="597" parent="569" name="email">
+    <column id="601" parent="569" name="email">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="598" parent="569" name="password">
+    <column id="602" parent="569" name="password">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="599" parent="569" name="rol">
+    <column id="603" parent="569" name="rol">
       <DefaultExpression>&apos;CLIENTE&apos;</DefaultExpression>
       <Position>5</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <column id="600" parent="569" name="saldo_monedero">
+    <column id="604" parent="569" name="saldo_monedero">
       <DefaultExpression>0.00</DefaultExpression>
       <Position>6</Position>
       <StoredType>decimal(10,2 digit)|0s</StoredType>
     </column>
-    <column id="601" parent="569" name="fecha_registro">
+    <column id="605" parent="569" name="fecha_registro">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>date|0s</StoredType>
     </column>
-    <column id="602" parent="569" name="cuenta_activa">
+    <column id="606" parent="569" name="cuenta_activa">
       <DefaultExpression>1</DefaultExpression>
       <Position>8</Position>
       <StoredType>tinyint(1)|0s</StoredType>
     </column>
-    <index id="603" parent="569" name="PRIMARY">
+    <index id="607" parent="569" name="PRIMARY">
       <ColNames>id_usuario</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="604" parent="569" name="email">
+    <index id="608" parent="569" name="email">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="605" parent="569" name="PRIMARY">
+    <key id="609" parent="569" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="606" parent="569" name="email">
+    <key id="610" parent="569" name="email">
       <UnderlyingIndexName>email</UnderlyingIndexName>
     </key>
-    <column id="607" parent="570" name="id_vehiculo">
+    <column id="611" parent="570" name="id_vehiculo">
       <AutoIncrement>1</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="608" parent="570" name="modelo">
+    <column id="612" parent="570" name="modelo">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(100)|0s</StoredType>
     </column>
-    <column id="609" parent="570" name="matricula">
+    <column id="613" parent="570" name="matricula">
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(20)|0s</StoredType>
     </column>
-    <column id="610" parent="570" name="imagen_url">
+    <column id="614" parent="570" name="imagen_url">
       <Position>4</Position>
       <StoredType>varchar(255)|0s</StoredType>
     </column>
-    <column id="611" parent="570" name="capacidad_pasajeros">
+    <column id="615" parent="570" name="capacidad_pasajeros">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>int(11)|0s</StoredType>
     </column>
-    <column id="612" parent="570" name="precio_por_dia">
+    <column id="616" parent="570" name="precio_por_dia">
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>decimal(10,2 digit)|0s</StoredType>
     </column>
-    <column id="613" parent="570" name="fecha_alta_flota">
+    <column id="617" parent="570" name="fecha_alta_flota">
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>date|0s</StoredType>
     </column>
-    <column id="614" parent="570" name="disponible">
+    <column id="618" parent="570" name="disponible">
       <DefaultExpression>1</DefaultExpression>
       <Position>8</Position>
       <StoredType>tinyint(1)|0s</StoredType>
     </column>
-    <index id="615" parent="570" name="PRIMARY">
+    <index id="619" parent="570" name="PRIMARY">
       <ColNames>id_vehiculo</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="616" parent="570" name="matricula">
+    <index id="620" parent="570" name="matricula">
       <ColNames>matricula</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="617" parent="570" name="PRIMARY">
+    <key id="621" parent="570" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="618" parent="570" name="matricula">
+    <key id="622" parent="570" name="matricula">
+      <UnderlyingIndexName>matricula</UnderlyingIndexName>
+    </key>
+    <column id="623" parent="571" name="id_mantenimiento">
+      <AutoIncrement>1</AutoIncrement>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="624" parent="571" name="id_vehiculo">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="625" parent="571" name="descripcion_taller">
+      <Position>3</Position>
+      <StoredType>text|0s</StoredType>
+    </column>
+    <column id="626" parent="571" name="coste_reparacion">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>decimal(10,2 digit)|0s</StoredType>
+    </column>
+    <column id="627" parent="571" name="fecha_revision">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>date|0s</StoredType>
+    </column>
+    <column id="628" parent="571" name="itv_superada">
+      <DefaultExpression>1</DefaultExpression>
+      <Position>6</Position>
+      <StoredType>tinyint(1)|0s</StoredType>
+    </column>
+    <foreign-key id="629" parent="571" name="mantenimientos_ibfk_1">
+      <ColNames>id_vehiculo</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>id_vehiculo</RefColNames>
+      <RefTableName>vehiculos</RefTableName>
+    </foreign-key>
+    <index id="630" parent="571" name="PRIMARY">
+      <ColNames>id_mantenimiento</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="631" parent="571" name="id_vehiculo">
+      <ColNames>id_vehiculo</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="632" parent="571" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="633" parent="572" name="id_reserva">
+      <AutoIncrement>1</AutoIncrement>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="634" parent="572" name="id_usuario">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="635" parent="572" name="id_vehiculo">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="636" parent="572" name="observaciones_cliente">
+      <Position>4</Position>
+      <StoredType>text|0s</StoredType>
+    </column>
+    <column id="637" parent="572" name="dias_alquiler">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="638" parent="572" name="coste_total">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>decimal(10,2 digit)|0s</StoredType>
+    </column>
+    <column id="639" parent="572" name="fecha_inicio_viaje">
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StoredType>date|0s</StoredType>
+    </column>
+    <column id="640" parent="572" name="pagada_por_completo">
+      <DefaultExpression>0</DefaultExpression>
+      <Position>8</Position>
+      <StoredType>tinyint(1)|0s</StoredType>
+    </column>
+    <foreign-key id="641" parent="572" name="reservas_ibfk_1">
+      <ColNames>id_usuario</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>id_usuario</RefColNames>
+      <RefTableName>usuarios</RefTableName>
+    </foreign-key>
+    <foreign-key id="642" parent="572" name="reservas_ibfk_2">
+      <ColNames>id_vehiculo</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>id_vehiculo</RefColNames>
+      <RefTableName>vehiculos</RefTableName>
+    </foreign-key>
+    <index id="643" parent="572" name="PRIMARY">
+      <ColNames>id_reserva</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="644" parent="572" name="id_usuario">
+      <ColNames>id_usuario</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="645" parent="572" name="id_vehiculo">
+      <ColNames>id_vehiculo</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="646" parent="572" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="647" parent="573" name="id_usuario">
+      <AutoIncrement>1</AutoIncrement>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="648" parent="573" name="nombre">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="649" parent="573" name="email">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="650" parent="573" name="password">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="651" parent="573" name="rol">
+      <DefaultExpression>&apos;CLIENTE&apos;</DefaultExpression>
+      <Position>5</Position>
+      <StoredType>varchar(20)|0s</StoredType>
+    </column>
+    <column id="652" parent="573" name="saldo_monedero">
+      <DefaultExpression>0.00</DefaultExpression>
+      <Position>6</Position>
+      <StoredType>decimal(10,2 digit)|0s</StoredType>
+    </column>
+    <column id="653" parent="573" name="fecha_registro">
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StoredType>date|0s</StoredType>
+    </column>
+    <column id="654" parent="573" name="cuenta_activa">
+      <DefaultExpression>1</DefaultExpression>
+      <Position>8</Position>
+      <StoredType>tinyint(1)|0s</StoredType>
+    </column>
+    <index id="655" parent="573" name="PRIMARY">
+      <ColNames>id_usuario</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="656" parent="573" name="email">
+      <ColNames>email</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="657" parent="573" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <key id="658" parent="573" name="email">
+      <UnderlyingIndexName>email</UnderlyingIndexName>
+    </key>
+    <column id="659" parent="574" name="id_vehiculo">
+      <AutoIncrement>1</AutoIncrement>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="660" parent="574" name="modelo">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="661" parent="574" name="matricula">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>varchar(20)|0s</StoredType>
+    </column>
+    <column id="662" parent="574" name="imagen_url">
+      <Position>4</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="663" parent="574" name="capacidad_pasajeros">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>int(11)|0s</StoredType>
+    </column>
+    <column id="664" parent="574" name="precio_por_dia">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>decimal(10,2 digit)|0s</StoredType>
+    </column>
+    <column id="665" parent="574" name="fecha_alta_flota">
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StoredType>date|0s</StoredType>
+    </column>
+    <column id="666" parent="574" name="disponible">
+      <DefaultExpression>1</DefaultExpression>
+      <Position>8</Position>
+      <StoredType>tinyint(1)|0s</StoredType>
+    </column>
+    <index id="667" parent="574" name="PRIMARY">
+      <ColNames>id_vehiculo</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="668" parent="574" name="matricula">
+      <ColNames>matricula</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="669" parent="574" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <key id="670" parent="574" name="matricula">
       <UnderlyingIndexName>matricula</UnderlyingIndexName>
     </key>
   </database-model>
