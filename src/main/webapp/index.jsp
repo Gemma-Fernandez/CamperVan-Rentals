@@ -47,7 +47,7 @@
 
                 </div>
             </div>
-            <p class="text-center mt-3 text-muted small">¿Ya tienes cuenta? Inicia sesión aquí.</p>
+            <p class="text-center mt-3 text-muted small">¿Ya tienes cuenta? <a href="login.jsp" class="text-decoration-none">Inicia sesión aquí</a>.</p>
         </div>
     </div>
 </div>
