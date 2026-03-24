@@ -20,20 +20,20 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        // 1. Buscamos al usuario en la base de datos
+        //Buscamos al usuario en la base de datos
         UserDao userDao = Database.getJdbi().onDemand(UserDao.class);
         User usuario = userDao.obtenerUsuarioPorEmail(email);
 
-        // 2. Comprobamos si el usuario existe y si la contraseña coincide
+        //Comprobamos si el usuario existe y si la contraseña coincide
         if (usuario != null && usuario.getPassword().equals(password)) {
-            // ¡ÉXITO! Creamos una "Sesión" para este usuario
+            //Creamos una "Sesión" para este usuario
             HttpSession session = request.getSession();
             session.setAttribute("usuarioLogueado", usuario);
 
             // Lo enviamos a su panel de control
-            response.sendRedirect("dashboard.jsp");
+            response.sendRedirect("dashboard");
         } else {
-            // ERROR: Le devolvemos al login marcando un error en la URL
+            //Le devolvemos al login marcando un error en la URL
             response.sendRedirect("login.jsp?error=1");
         }
     }

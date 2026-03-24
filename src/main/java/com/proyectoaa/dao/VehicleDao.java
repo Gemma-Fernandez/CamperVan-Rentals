@@ -11,21 +11,11 @@ import java.util.List;
 
 public interface VehicleDao {
 
-    // Dar de alta un vehículo
-    @SqlUpdate("INSERT INTO vehiculos (modelo, matricula, imagen_url, capacidad_pasajeros, precio_por_dia, fecha_alta_flota, disponible) VALUES (:modelo, :matricula, :imagenUrl, :capacidadPasajeros, :precioPorDia, :fechaAltaFlota, :disponible)")
-    boolean registrarVehiculo(@BindBean Vehicle vehicle);
 
-    // Listado completo para el catálogo
-    @SqlQuery("SELECT * FROM vehiculos")
+    // Listado disponibles
+    @SqlQuery("SELECT * FROM vehiculos WHERE disponible = true")
     @RegisterBeanMapper(Vehicle.class)
-    List<Vehicle> listarTodos();
+    List<Vehicle> obtenerDisponibles();
 
-    // Buscar uno solo por su ID
-    @SqlQuery("SELECT * FROM vehiculos WHERE id_vehiculo = :id")
-    @RegisterBeanMapper(Vehicle.class)
-    Vehicle obtenerPorId(@Bind("id") int id);
 
-    // Dar de baja
-    @SqlUpdate("UPDATE vehiculos SET disponible = false WHERE id_vehiculo = :id")
-    boolean darDeBaja(@Bind("id") int id);
 }
