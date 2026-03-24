@@ -68,7 +68,7 @@
                             <p class="text-muted small mb-2">Matrícula: <%= v.getMatricula() %></p>
                             <p class="mb-1">👥 <%= v.getCapacidadPasajeros() %> plazas</p>
                             <h5 class="text-primary mt-auto pt-3"><%= v.getPrecioPorDia() %> € <small class="text-muted fs-6">/ día</small></h5>
-                            <button class="btn btn-success mt-3 w-100">Reservar</button>
+                            <a href="reservar.jsp?idVehiculo=<%= v.getIdVehiculo() %>&modelo=<%= v.getModelo() %>&precio=<%= v.getPrecioPorDia() %>" class="btn btn-success mt-3 w-100">Reservar</a>
                         </div>
                     </div>
                 </div>

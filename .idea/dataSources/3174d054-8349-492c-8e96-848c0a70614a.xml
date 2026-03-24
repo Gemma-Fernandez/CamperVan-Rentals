@@ -1449,7 +1449,7 @@ test\\_%|schema||PUBLIC|&apos;&apos;|UPDATE|G</Grants>
     <schema id="554" parent="1" name="campervan_rentals">
       <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
       <LastIntrospectionLevel>3</LastIntrospectionLevel>
-      <LastIntrospectionLocalTimestamp>2026-03-22.11:37:31</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2026-03-24.18:45:28</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <schema id="555" parent="1" name="gourmet_db">
@@ -1467,7 +1467,7 @@ test\\_%|schema||PUBLIC|&apos;&apos;|UPDATE|G</Grants>
     <schema id="559" parent="1" name="proyectoaa">
       <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
       <LastIntrospectionLevel>3</LastIntrospectionLevel>
-      <LastIntrospectionLocalTimestamp>2026-03-22.16:55:53</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2026-03-24.18:45:28</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <schema id="560" parent="1" name="sys">
@@ -1609,7 +1609,7 @@ test\\_%|schema||PUBLIC|&apos;&apos;|UPDATE|G</Grants>
     <column id="590" parent="568" name="coste_total">
       <NotNull>1</NotNull>
       <Position>6</Position>
-      <StoredType>decimal(10,2 digit)|0s</StoredType>
+      <StoredType>double|0s</StoredType>
     </column>
     <column id="591" parent="568" name="fecha_inicio_viaje">
       <NotNull>1</NotNull>
@@ -1623,13 +1623,11 @@ test\\_%|schema||PUBLIC|&apos;&apos;|UPDATE|G</Grants>
     </column>
     <foreign-key id="593" parent="568" name="reservas_ibfk_1">
       <ColNames>id_usuario</ColNames>
-      <OnDelete>cascade</OnDelete>
       <RefColNames>id_usuario</RefColNames>
       <RefTableName>usuarios</RefTableName>
     </foreign-key>
     <foreign-key id="594" parent="568" name="reservas_ibfk_2">
       <ColNames>id_vehiculo</ColNames>
-      <OnDelete>cascade</OnDelete>
       <RefColNames>id_vehiculo</RefColNames>
       <RefTableName>vehiculos</RefTableName>
     </foreign-key>
