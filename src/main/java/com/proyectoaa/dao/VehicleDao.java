@@ -13,7 +13,7 @@ import java.util.List;
 public interface VehicleDao {
 
 
-    // Listado disponibles
+    // Listado campers disponibles
     @SqlQuery("SELECT * FROM vehiculos WHERE disponible = true")
     @RegisterBeanMapper(Vehicle.class)
     List<Vehicle> obtenerDisponibles();
@@ -29,4 +29,16 @@ public interface VehicleDao {
     @RegisterBeanMapper(Vehicle.class)
     Vehicle obtenerPorId(@Bind("id") Integer id);
 
+    // Eliminar un vehículo de la base de datos
+    @SqlUpdate("DELETE FROM vehiculos WHERE id_vehiculo = :id")
+    int borrarVehiculo(@Bind("id") Integer id);
+
+    // Modificar los datos de un vehículo existente
+    @SqlUpdate("UPDATE vehiculos SET modelo = :modelo, matricula = :matricula, capacidad_pasajeros = :capacidadPasajeros, precio_por_dia = :precioPorDia, disponible = :disponible WHERE id_vehiculo = :idVehiculo")
+    int modificarVehiculo(@BindBean Vehicle vehicle);
+
+    // Obtener absolutamente TODOS los vehículos (Para Admin)
+    @SqlQuery("SELECT * FROM vehiculos ORDER BY id_vehiculo DESC")
+    @RegisterBeanMapper(Vehicle.class)
+    List<Vehicle> obtenerTodos();
 }

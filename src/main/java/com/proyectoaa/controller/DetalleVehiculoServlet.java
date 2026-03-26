@@ -18,15 +18,15 @@ import java.io.IOException;
         @Override
         protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             try {
-                // Cogemos el ID de la URL (ej: /detalleVehiculo?id=3)
+                //Cogemos el ID de la URL
                 Integer id = Integer.parseInt(request.getParameter("id"));
 
-                // Buscamos el vehículo en la base de datos
+                //Buscamos el vehículo en base datos
                 VehicleDao vehicleDao = Database.getJdbi().onDemand(VehicleDao.class);
                 Vehicle vehiculo = vehicleDao.obtenerPorId(id);
 
                 if (vehiculo != null) {
-                    // Lo guardamos y mandamos a la pantalla de detalle
+                    //Guardamos y mandamos a la pantalla de detalle
                     request.setAttribute("vehiculo", vehiculo);
                     request.getRequestDispatcher("detalleVehiculo.jsp").forward(request, response);
                 } else {
