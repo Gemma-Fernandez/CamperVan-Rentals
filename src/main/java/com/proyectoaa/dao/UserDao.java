@@ -29,4 +29,12 @@ public interface UserDao {
     @SqlQuery("SELECT * FROM usuarios WHERE id_usuario = :id")
     @RegisterBeanMapper(User.class)
     User obtenerPorId(@Bind("id") Integer id);
+
+    // Eliminar un usuario de la base de datos
+    @SqlUpdate("DELETE FROM usuarios WHERE id_usuario = :id")
+    int borrarUsuario(@Bind("id") Integer id);
+
+    // Modificar los datos de un usuario
+    @SqlUpdate("UPDATE usuarios SET nombre = :nombre, email = :email, rol = :rol WHERE id_usuario = :id")
+    int modificarUsuario(@BindBean User user);
 }

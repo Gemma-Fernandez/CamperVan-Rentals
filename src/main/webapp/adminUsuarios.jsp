@@ -56,7 +56,27 @@
   </ul>
 
   <h2 class="mb-4 text-warning">Directorio de Clientes</h2>
+  <% if ("true".equals(request.getParameter("borradoOk"))) { %>
+  <div class="alert alert-success border-0 shadow-sm alert-dismissible fade show" role="alert">
+    ✅ <strong>¡Usuario eliminado!</strong> Sus datos han sido borrados del sistema correctamente.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <% } %>
 
+  <% if ("borrado".equals(request.getParameter("error"))) { %>
+  <div class="alert alert-danger border-0 shadow-sm alert-dismissible fade show" role="alert">
+    <strong>¡Operación bloqueada por seguridad!</strong><br>
+    No puedes eliminar a este cliente porque tiene <strong>reservas asociadas</strong>.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <% } %>
+
+  <% if ("propiaCuenta".equals(request.getParameter("error"))) { %>
+  <div class="alert alert-warning border-0 shadow-sm alert-dismissible fade show" role="alert">
+    No puedes borrar tu propia cuenta de Administrador mientras estás dentro.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <% } %>
   <div class="card bg-dark border border-secondary shadow-sm">
     <div class="card-body p-0">
       <table class="table table-dark table-striped table-hover mb-0">

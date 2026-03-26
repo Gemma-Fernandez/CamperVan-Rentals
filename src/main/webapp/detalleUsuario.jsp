@@ -61,9 +61,8 @@
           </ul>
 
           <div class="d-grid gap-2 mt-4">
-            <a href="#" class="btn btn-outline-warning fw-bold">Editar Cliente</a>
-            <a href="#" class="btn btn-danger fw-bold" onclick="return confirm('¿Estás seguro de que quieres borrar a este usuario? Si tiene reservas, no podrás hacerlo.');"> Borrar Cliente</a>
-          </div>
+            <a href="editarUsuario.jsp?id=<%= cliente.getIdUsuario() %>" class="btn btn-outline-warning fw-bold">Editar Cliente</a>
+            <a href="borrarUsuario?id=<%= cliente.getIdUsuario() %>" class="btn btn-danger fw-bold" onclick="return confirm('¿Estás seguro de que quieres borrar a este usuario? Si tiene reservas, no podrás hacerlo.');">Borrar Cliente</a>          </div>
         </div>
       </div>
     </div>
