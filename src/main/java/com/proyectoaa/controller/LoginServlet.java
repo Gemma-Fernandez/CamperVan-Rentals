@@ -29,9 +29,15 @@ public class LoginServlet extends HttpServlet {
             //Creamos una "Sesión" para este usuario
             HttpSession session = request.getSession();
             session.setAttribute("usuarioLogueado", usuario);
+            if ("ADMIN".equals(usuario.getRol())) {
+                // Si es el jefe a la trastienda
+                response.sendRedirect("adminDashboard.jsp");
+            } else {
+                // Si es cliente al menu normal
+                response.sendRedirect("dashboard");
+            }
 
-            // Lo enviamos a su panel de control
-            response.sendRedirect("dashboard");
+
         } else {
             //Le devolvemos al login marcando un error en la URL
             response.sendRedirect("login.jsp?error=1");
