@@ -41,4 +41,13 @@ public interface VehicleDao {
     @SqlQuery("SELECT * FROM vehiculos ORDER BY id_vehiculo DESC")
     @RegisterBeanMapper(Vehicle.class)
     List<Vehicle> obtenerTodos();
+
+    // Liberar un vehículo cuando se cancela su reserva
+    @SqlUpdate("UPDATE vehiculos SET disponible = true WHERE id_vehiculo = :id")
+    int hacerDisponible(@Bind("id") Integer id);
+
+    // Buscador doble: Por Modelo/Marca Y Precio Máximo
+    @SqlQuery("SELECT * FROM vehiculos WHERE modelo LIKE CONCAT('%', :texto, '%') AND precio_por_dia <= :precioMax")
+    @RegisterBeanMapper(Vehicle.class)
+    List<Vehicle> buscarVehiculosDoble(@Bind("texto") String texto, @Bind("precioMax") Double precioMax);
 }

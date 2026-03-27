@@ -22,16 +22,10 @@ public class ModificarUsuarioServlet extends HttpServlet {
             String email = request.getParameter("email");
             String rol = request.getParameter("rol");
 
-            //Rellenamos el objeto User
-            User usuarioModificado = new User();
-            usuarioModificado.setIdUsuario(id);
-            usuarioModificado.setNombre(nombre);
-            usuarioModificado.setEmail(email);
-            usuarioModificado.setRol(rol);
 
             // enviamos a la base de datos
             UserDao userDao = Database.getJdbi().onDemand(UserDao.class);
-            userDao.modificarUsuario(usuarioModificado);
+            userDao.modificarUsuario(id, nombre, email, rol);
 
             //Volvemos a la vista detalle de este mismo usuario
             response.sendRedirect("detalleUsuario?id=" + id);
