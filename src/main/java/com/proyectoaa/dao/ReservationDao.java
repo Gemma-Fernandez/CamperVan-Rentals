@@ -46,4 +46,15 @@ public interface ReservationDao {
     @SqlUpdate("UPDATE reservas SET fecha_inicio_viaje = :fechaInicioViaje, dias_alquiler = :diasAlquiler, coste_total = :costeTotal, pagada_por_completo = :pagadaPorCompleto, observaciones_cliente = :observacionesCliente WHERE id_reserva = :idReserva")
     int modificarReserva(@BindBean Reservation reserva);
 
+    // Buscador doble de Reservas: Por Nombre del Cliente Y Modelo del Vehículo
+    @SqlQuery("SELECT r.*, u.nombre AS nombreUsuario, v.modelo AS modeloVehiculo " +
+            "FROM reservas r " +
+            "JOIN usuarios u ON r.id_usuario = u.id_usuario " +
+            "JOIN vehiculos v ON r.id_vehiculo = v.id_vehiculo " +
+            "WHERE u.nombre LIKE CONCAT('%', :cliente, '%') " +
+            "AND v.modelo LIKE CONCAT('%', :vehiculo, '%') " +
+            "ORDER BY r.id_reserva DESC")
+    @RegisterBeanMapper(Reservation.class)
+    List<Reservation> buscarReservasDoble(@Bind("cliente") String cliente, @Bind("vehiculo") String vehiculo);
+
 }

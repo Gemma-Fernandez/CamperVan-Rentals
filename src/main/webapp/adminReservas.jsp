@@ -21,7 +21,21 @@
 
   // Traemos TODAS las reservas de la base de datos
   ReservationDao reservationDao = Database.getJdbi().onDemand(ReservationDao.class);
-  List<Reservation> listaReservas = reservationDao.obtenerTodas();
+
+//Recogemos lo que admin ha escrito
+  String filtroCliente = request.getParameter("clienteBusqueda");
+  String filtroVehiculo = request.getParameter("vehiculoBusqueda");
+
+  List<Reservation> listaReservas;
+
+  if (filtroCliente != null || filtroVehiculo != null) {
+    String cli = (filtroCliente != null) ? filtroCliente : "";
+    String veh = (filtroVehiculo != null) ? filtroVehiculo : "";
+    listaReservas = reservationDao.buscarReservasDoble(cli, veh);
+  } else {
+    listaReservas = reservationDao.obtenerTodas();
+  }
+
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -58,6 +72,23 @@
 
   <h2 class="mb-4 text-warning">Historial Global de Reservas</h2>
 
+  <div class="card bg-secondary text-white mb-4 shadow-sm border-0">
+    <div class="card-body">
+      <form action="adminReservas.jsp" method="GET" class="row g-3 align-items-end">
+        <div class="col-md-5">
+          <label class="form-label fw-bold">Buscar por Cliente:</label>
+          <input type="text" name="clienteBusqueda" class="form-control" placeholder="Ej: Gemma..." value="<%= (filtroCliente != null) ? filtroCliente : "" %>">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label fw-bold">Buscar por Vehículo:</label>
+          <input type="text" name="vehiculoBusqueda" class="form-control" placeholder="Ej: Volkswagen..." value="<%= (filtroVehiculo != null) ? filtroVehiculo : "" %>">
+        </div>
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-warning fw-bold w-100">Aplicar Filtros</button>
+        </div>
+      </form>
+    </div>
+  </div>
   <% if ("true".equals(request.getParameter("borradoOk"))) { %>
   <div class="alert alert-success border-0 shadow-sm alert-dismissible fade show" role="alert">
     <strong>¡Reserva cancelada!</strong> El registro ha sido eliminado del sistema.

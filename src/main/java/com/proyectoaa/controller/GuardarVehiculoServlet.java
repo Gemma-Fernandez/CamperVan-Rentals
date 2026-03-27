@@ -60,10 +60,10 @@ import java.time.LocalDate;
             nuevoVehiculo.setFechaAltaFlota(LocalDate.now());
             nuevoVehiculo.setDisponible(true);
 
-            //Guardamos la ruta para que la web sepa dónde buscar
+            //Guardamos la ruta para web sepa dónde buscar
             nuevoVehiculo.setImagenUrl("uploads/" + uniqueFileName);
 
-            //Lo metemos en la Base de Datos
+            //metemos en la Base de Datos
             VehicleDao vehicleDao = Database.getJdbi().onDemand(VehicleDao.class);
             vehicleDao.insertarVehiculo(nuevoVehiculo);
 
