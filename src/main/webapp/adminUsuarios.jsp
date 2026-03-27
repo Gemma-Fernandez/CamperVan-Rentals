@@ -20,7 +20,23 @@
 
   // Traemos a todos los usuarios de la base de datos
   UserDao userDao = Database.getJdbi().onDemand(UserDao.class);
-  List<User> listaUsuarios = userDao.obtenerTodos();
+
+  //Recogemos lo que ha escrito
+  String filtroNombre = request.getParameter("nombreBusqueda");
+  String filtroRol = request.getParameter("rolBusqueda");
+
+  // preparamos la lista vacía
+  List<User> listaUsuarios;
+
+  //Si ha usado el buscador, filtramos
+  if (filtroNombre != null || filtroRol != null) {
+    String nom = (filtroNombre != null) ? filtroNombre : "";
+    String r = (filtroRol != null) ? filtroRol : "";
+    listaUsuarios = userDao.buscarUsuariosDoble(nom, r);
+  } else {
+    listaUsuarios = userDao.obtenerTodos();
+  }
+
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -55,9 +71,30 @@
   </ul>
 
   <h2 class="mb-4 text-warning">Directorio de Clientes</h2>
+  <div class="card bg-secondary text-white mb-4 shadow-sm border-0">
+    <div class="card-body">
+      <form action="adminUsuarios.jsp" method="GET" class="row g-3 align-items-end">
+        <div class="col-md-5">
+          <label class="form-label fw-bold">Buscar por Nombre:</label>
+          <input type="text" name="nombreBusqueda" class="form-control" placeholder="Ej: Gemma..." value="<%= (filtroNombre != null) ? filtroNombre : "" %>">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label fw-bold">iltrar por Rol:</label>
+          <select name="rolBusqueda" class="form-select">
+            <option value="">Todos los roles</option>
+            <option value="ADMIN" <%= "ADMIN".equals(filtroRol) ? "selected" : "" %>>Administradores</option>
+            <option value="CLIENTE" <%= "CLIENTE".equals(filtroRol) ? "selected" : "" %>>Clientes</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-warning fw-bold w-100">Aplicar Filtros</button>
+        </div>
+      </form>
+    </div>
+  </div>
   <% if ("true".equals(request.getParameter("borradoOk"))) { %>
   <div class="alert alert-success border-0 shadow-sm alert-dismissible fade show" role="alert">
-    ✅ <strong>¡Usuario eliminado!</strong> Sus datos han sido borrados del sistema correctamente.
+     <strong>¡Usuario eliminado!</strong> Sus datos han sido borrados del sistema correctamente.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   <% } %>

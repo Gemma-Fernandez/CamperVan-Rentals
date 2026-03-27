@@ -11,11 +11,11 @@ import java.util.List;
 
 public interface UserDao {
 
-    //Método para DAR DE ALTA
+    //Para dar de alta
     @SqlUpdate("INSERT INTO usuarios (nombre, email, password, rol, saldo_monedero, fecha_registro, cuenta_activa) VALUES (:nombre, :email, :password, :rol, :saldoMonedero, :fechaRegistro, :cuentaActiva)")
     boolean registrarUsuario(@BindBean User user);
 
-    //Método para el LOGIN
+    //Para el login
     @SqlQuery("SELECT * FROM usuarios WHERE email = :email")
     @RegisterBeanMapper(User.class)
     User obtenerUsuarioPorEmail(@Bind("email") String email);
@@ -35,7 +35,11 @@ public interface UserDao {
     int borrarUsuario(@Bind("id") Integer id);
 
     // Modificar los datos de un usuario
-    // Modificar los datos de un usuario (Versión blindada)
     @SqlUpdate("UPDATE usuarios SET nombre = :nombre, email = :email, rol = :rol WHERE id_usuario = :id")
     int modificarUsuario(@Bind("id") Integer id, @Bind("nombre") String nombre, @Bind("email") String email, @Bind("rol") String rol);
+
+    // Buscador doble de Usuarios: Nombre Y Rol
+    @SqlQuery("SELECT * FROM usuarios WHERE nombre LIKE CONCAT('%', :nombre, '%') AND rol LIKE CONCAT('%', :rol, '%')")
+    @RegisterBeanMapper(User.class)
+    List<User> buscarUsuariosDoble(@Bind("nombre") String nombre, @Bind("rol") String rol);
 }
