@@ -19,4 +19,13 @@ public interface ReservationDao {
     @SqlQuery("SELECT * FROM reservas WHERE id_usuario = :idUsuario ORDER BY fecha_inicio_viaje ASC")
     @RegisterBeanMapper(Reservation.class)
     List<Reservation> obtenerPorUsuario(@Bind("idUsuario") Integer idUsuario);
+
+    // Obtener todas las reservas (admin)
+    @SqlQuery("SELECT r.*, u.nombre AS nombreUsuario, v.modelo AS modeloVehiculo " +
+            "FROM reservas r " +
+            "JOIN usuarios u ON r.id_usuario = u.id_usuario " +
+            "JOIN vehiculos v ON r.id_vehiculo = v.id_vehiculo " +
+            "ORDER BY r.id_reserva DESC")
+    @RegisterBeanMapper(Reservation.class)
+    List<Reservation> obtenerTodas();
 }

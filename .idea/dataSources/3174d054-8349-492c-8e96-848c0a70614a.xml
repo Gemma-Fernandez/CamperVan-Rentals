@@ -1709,7 +1709,7 @@ test\\_%|schema||PUBLIC|&apos;&apos;|UPDATE|G</Grants>
       <UnderlyingIndexName>email</UnderlyingIndexName>
     </key>
     <column id="611" parent="570" name="id_vehiculo">
-      <AutoIncrement>4</AutoIncrement>
+      <AutoIncrement>6</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int(11)|0s</StoredType>

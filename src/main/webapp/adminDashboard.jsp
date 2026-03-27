@@ -39,6 +39,17 @@
 </nav>
 
 <div class="container mt-5">
+  <ul class="nav nav-tabs border-secondary mb-4">
+    <li class="nav-item">
+      <a class="nav-link active bg-warning text-dark fw-bold border-warning" href="adminDashboard.jsp">Flota</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-light border-secondary" href="adminUsuarios.jsp">Clientes</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-light border-secondary" href="adminReservas.jsp">Reservas</a>
+    </li>
+  </ul>
   <h2 class="mb-4 text-warning">Gestión de la Flota</h2>
   <% if ("true".equals(request.getParameter("borradoOk"))) { %>
   <div class="alert alert-success border-0 shadow-sm alert-dismissible fade show" role="alert">

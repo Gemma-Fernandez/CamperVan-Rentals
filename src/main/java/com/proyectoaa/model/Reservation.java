@@ -18,4 +18,6 @@ public class Reservation {
     private Double costeTotal;
     private LocalDate fechaInicioViaje;
     private Boolean pagadaPorCompleto;
+    private String nombreUsuario;
+    private String modeloVehiculo;
 }
