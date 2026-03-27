@@ -2,13 +2,14 @@
   Created by IntelliJ IDEA.
   User: gemmafernandez
   Date: 26/3/26
-  Time: 17:26
+  Time: 19:14
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="com.proyectoaa.model.User" %>
+<%@ page import="com.proyectoaa.model.Reservation" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.proyectoaa.dao.Database" %>
-<%@ page import="com.proyectoaa.dao.UserDao" %>
+<%@ page import="com.proyectoaa.dao.ReservationDao" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
   // Seguridad ADMIN
@@ -18,15 +19,15 @@
     return;
   }
 
-  // Traemos a todos los usuarios de la base de datos
-  UserDao userDao = Database.getJdbi().onDemand(UserDao.class);
-  List<User> listaUsuarios = userDao.obtenerTodos();
+  // Traemos TODAS las reservas de la base de datos
+  ReservationDao reservationDao = Database.getJdbi().onDemand(ReservationDao.class);
+  List<Reservation> listaReservas = reservationDao.obtenerTodas();
 %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Gestión de Clientes - Admin</title>
+  <title>Gestión de Reservas - Admin</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-dark text-light">
@@ -42,75 +43,63 @@
 </nav>
 
 <div class="container mt-5">
+
   <ul class="nav nav-tabs border-secondary mb-4">
     <li class="nav-item">
       <a class="nav-link text-light border-secondary" href="adminDashboard.jsp">Flota</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active bg-warning text-dark fw-bold border-warning" href="adminUsuarios.jsp">Clientes</a>
+      <a class="nav-link text-light border-secondary" href="adminUsuarios.jsp">Clientes</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-light border-secondary" href="adminReservas.jsp">Reservas</a>
+      <a class="nav-link active bg-warning text-dark fw-bold border-warning" href="adminReservas.jsp">Reservas</a>
     </li>
   </ul>
 
-  <h2 class="mb-4 text-warning">Directorio de Clientes</h2>
+  <h2 class="mb-4 text-warning">Historial Global de Reservas</h2>
+
   <% if ("true".equals(request.getParameter("borradoOk"))) { %>
   <div class="alert alert-success border-0 shadow-sm alert-dismissible fade show" role="alert">
-    ✅ <strong>¡Usuario eliminado!</strong> Sus datos han sido borrados del sistema correctamente.
+    <strong>¡Reserva cancelada!</strong> El registro ha sido eliminado del sistema.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   <% } %>
 
-  <% if ("borrado".equals(request.getParameter("error"))) { %>
-  <div class="alert alert-danger border-0 shadow-sm alert-dismissible fade show" role="alert">
-    <strong>¡Operación bloqueada por seguridad!</strong><br>
-    No puedes eliminar a este cliente porque tiene <strong>reservas asociadas</strong>.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  <% } %>
-
-  <% if ("propiaCuenta".equals(request.getParameter("error"))) { %>
-  <div class="alert alert-warning border-0 shadow-sm alert-dismissible fade show" role="alert">
-    No puedes borrar tu propia cuenta de Administrador mientras estás dentro.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  <% } %>
   <div class="card bg-dark border border-secondary shadow-sm">
     <div class="card-body p-0">
       <table class="table table-dark table-striped table-hover mb-0">
         <thead>
         <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Rol</th>
+          <th>ID Reserva</th>
+          <th>Nombre cliente</th>
+          <th>Vehículo</th>
+          <th>Inicio</th>
+          <th>Días</th>
+          <th>Total (€)</th>
           <th class="text-end">Acciones</th>
         </tr>
         </thead>
         <tbody>
         <%
-          if (listaUsuarios != null && !listaUsuarios.isEmpty()) {
-            for (User u : listaUsuarios) {
+          if (listaReservas != null && !listaReservas.isEmpty()) {
+            for (Reservation r : listaReservas) {
         %>
         <tr>
-          <td>#<%= u.getIdUsuario() %></td>
-          <td class="fw-bold"><%= u.getNombre() %></td>
-          <td><%= u.getEmail() %></td>
-          <td>
-            <span class="badge <%= "ADMIN".equals(u.getRol()) ? "bg-danger" : "bg-primary" %>">
-                                            <%= u.getRol() %>
-            </span>
-          </td>
+          <td class="fw-bold text-warning">#<%= r.getIdReserva() %></td>
+          <td><%= r.getNombreUsuario() %></td>
+          <td><%= r.getModeloVehiculo() %>-- ID #<%= r.getIdVehiculo() %></td>
+          <td><%= r.getFechaInicioViaje() %></td>
+          <td><%= r.getDiasAlquiler() %></td>
+          <td class="text-success fw-bold"><%= r.getCosteTotal() %> €</td>
           <td class="text-end">
-            <a href="detalleUsuario?id=<%= u.getIdUsuario() %>" class="btn btn-sm btn-outline-warning fw-bold">Ver Detalles</a>
+            <a href="detalleReserva?id=<%= r.getIdReserva() %>" class="btn btn-sm btn-outline-warning fw-bold">Gestionar</a>
           </td>
         </tr>
         <%
           }
         } else {
         %>
-        <tr><td colspan="5" class="text-center py-4 text-muted">No hay usuarios registrados.</td></tr>
+        <tr><td colspan="7" class="text-center py-4 text-muted">Aún no hay reservas en el sistema.</td></tr>
         <% } %>
         </tbody>
       </table>

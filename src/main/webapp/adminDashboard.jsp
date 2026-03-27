@@ -47,7 +47,7 @@
       <a class="nav-link text-light border-secondary" href="adminUsuarios.jsp">Clientes</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-light border-secondary" href="#">Reservas</a>
+      <a class="nav-link text-light border-secondary" href="adminReservas.jsp">Reservas</a>
     </li>
   </ul>
   <h2 class="mb-4 text-warning">Gestión de la Flota</h2>
