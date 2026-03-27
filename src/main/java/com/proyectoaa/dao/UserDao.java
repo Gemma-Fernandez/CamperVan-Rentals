@@ -35,6 +35,7 @@ public interface UserDao {
     int borrarUsuario(@Bind("id") Integer id);
 
     // Modificar los datos de un usuario
+    // Modificar los datos de un usuario (Versión blindada)
     @SqlUpdate("UPDATE usuarios SET nombre = :nombre, email = :email, rol = :rol WHERE id_usuario = :id")
-    int modificarUsuario(@BindBean User user);
+    int modificarUsuario(@Bind("id") Integer id, @Bind("nombre") String nombre, @Bind("email") String email, @Bind("rol") String rol);
 }

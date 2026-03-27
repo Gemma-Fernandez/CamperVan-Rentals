@@ -19,7 +19,24 @@
     return;
   }
   VehicleDao vehicleDao = Database.getJdbi().onDemand(VehicleDao.class);
-  List<Vehicle> vehiculos = vehicleDao.obtenerTodos();
+
+  // recogemos lo que se escribe
+  String filtroModelo = request.getParameter("modelo");
+  String filtroPrecio = request.getParameter("precioMax");
+
+  List<Vehicle> listaVehiculos;
+
+  // Si ha usado el buscador, filtramos. Si no, lo mostramos
+  if (filtroModelo != null || filtroPrecio != null) {
+    String texto = (filtroModelo != null) ? filtroModelo : "";
+    //Si deja el precio en blanco, le ponemos 9999€
+    Double max = (filtroPrecio == null || filtroPrecio.isEmpty()) ? 9999.0 : Double.parseDouble(filtroPrecio);
+
+    listaVehiculos = vehicleDao.buscarVehiculosDoble(texto, max);
+  } else {
+    listaVehiculos = vehicleDao.obtenerTodos();
+  }
+
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -51,6 +68,23 @@
     </li>
   </ul>
   <h2 class="mb-4 text-warning">Gestión de la Flota</h2>
+  <div class="card bg-secondary text-white mb-4 shadow-sm border-0">
+    <div class="card-body">
+      <form action="adminDashboard.jsp" method="GET" class="row g-3 align-items-end">
+        <div class="col-md-5">
+          <label class="form-label fw-bold">Buscar por Modelo / Marca:</label>
+          <input type="text" name="modelo" class="form-control" placeholder="Ej: Volkswagen, Ford..." value="<%= (filtroModelo != null) ? filtroModelo : "" %>">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label fw-bold">Precio Máximo (€/día):</label>
+          <input type="number" step="0.01" name="precioMax" class="form-control" placeholder="Ej: 80" value="<%= (filtroPrecio != null) ? filtroPrecio : "" %>">
+        </div>
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-warning fw-bold w-100">Aplicar Filtros</button>
+        </div>
+      </form>
+    </div>
+  </div>
   <% if ("true".equals(request.getParameter("borradoOk"))) { %>
   <div class="alert alert-success border-0 shadow-sm alert-dismissible fade show" role="alert">
     <strong>¡Baja completada!</strong> La furgoneta ha sido eliminada de la flota correctamente.
@@ -80,8 +114,8 @@
   </div>
   <hr class="border-secondary mt-2 mb-4"> <div class="row mt-4">
     <%
-      if (vehiculos != null && !vehiculos.isEmpty()) {
-        for (Vehicle v : vehiculos) {
+      if (listaVehiculos != null && !listaVehiculos.isEmpty()) {
+        for (Vehicle v : listaVehiculos) {
     %>
     <div class="col-md-4 mb-4">
       <div class="card bg-dark border border-secondary shadow-sm h-100">

@@ -9,6 +9,9 @@
 <%@ page import="com.proyectoaa.model.Vehicle" %>
 <%@ page import="com.proyectoaa.model.Reservation" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.proyectoaa.dao.VehicleDao" %>
+<%@ page import="com.proyectoaa.dao.ReservationDao" %>
+<%@ page import="com.proyectoaa.dao.Database" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
@@ -17,9 +20,12 @@
         response.sendRedirect("login.jsp");
         return;
     }
-    // Recuperamos lista de vehículos que mandó el Servlet
-    List<Vehicle> vehiculos = (List<Vehicle>) request.getAttribute("vehiculos");
-    List<Reservation> misReservas = (List<Reservation>) request.getAttribute("misReservas");
+    VehicleDao vehicleDao = Database.getJdbi().onDemand(VehicleDao.class);
+    ReservationDao reservationDao = Database.getJdbi().onDemand(ReservationDao.class);
+
+    // Buscamos los vehículos disponibles y las reservas SOLO de este usuario
+    List<Vehicle> vehiculos = vehicleDao.obtenerDisponibles();
+    List<Reservation> misReservas = reservationDao.obtenerPorUsuario(usuario.getIdUsuario());
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -65,8 +71,14 @@
                         <strong>Viaje el:</strong> <%= r.getFechaInicioViaje() %><br>
                         <strong>Días:</strong> <%= r.getDiasAlquiler() %> |
                         <strong>Total:</strong> <%= r.getCosteTotal() %> €
-                        <div class="mt-1 text-success fw-bold">ID Vehículo: <%= r.getIdVehiculo() %></div>
+
+                        <div class="mt-2 d-flex justify-content-between align-items-center">
+                            <span class="text-success fw-bold">ID Vehículo: <%= r.getIdVehiculo() %></span>
+
+                            <a href="cancelarMiReserva?id=<%= r.getIdReserva() %>" class="btn btn-sm btn-outline-danger fw-bold" onclick="return confirm('¿Seguro que quieres cancelar tu viaje? Esta acción no se puede deshacer.');"> Cancelar</a>
+                        </div>
                     </div>
+
                     <%
                         }
                     } else {
